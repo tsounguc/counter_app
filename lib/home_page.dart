@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'cubit/counter_cubit.dart';
+import 'inc_dec_page.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key, required this.title});
 
   final String title;
-
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +34,17 @@ class MyHomePage extends StatelessWidget {
                 }),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        heroTag: "1",
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => const IncDecPage(),
+            ),
+          );
+        },
+        child: const Icon(Icons.navigate_next),
       ),
     );
   }
