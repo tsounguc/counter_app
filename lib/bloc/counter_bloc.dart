@@ -1,12 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-sealed class CounterEvent {}
-
-// Making the event classes final makes so they can't be
-// extended or implemented outside of this library
-final class CounterIncremented extends CounterEvent {}
-
-final class CounterDecremented extends CounterEvent {}
+part 'counter_event.dart';
 
 class CounterBloc extends Bloc<CounterEvent, int> {
   CounterBloc() : super(0) {
@@ -15,7 +9,9 @@ class CounterBloc extends Bloc<CounterEvent, int> {
     });
 
     on<CounterDecremented>((event, emit) {
-      emit(state - 1);
+      if (state == 0) {
+        emit(state - 1);
+      }
     });
   }
 }
